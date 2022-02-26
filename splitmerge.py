@@ -1,0 +1,26 @@
+import cv2 as cv
+import numpy as np
+# Read image
+img = cv.imread('Photos/test.jpg')
+cv.imshow('test', img)
+# #converting img to grayscale
+# gray = cv.cvtColor(img,cv.COLOR_RGB2GRAY)
+# cv.imshow('Gray', gray)
+b,g,r = cv.split(img)
+cv.imshow('b', b)
+cv.imshow('g', g)
+cv.imshow('r', r)
+print(img.shape)
+print(b.shape)
+print(g.shape)
+print(r.shape)
+merged = cv.merge([b,g,r])
+cv.imshow('Merged',merged)
+blank = np.zeros(img.shape[:2],dtype='uint8')
+blue = cv.merge([b,blank,blank])
+green = cv.merge([blank,g,blank])
+red = cv.merge([blank,blank,r])
+cv.imshow('blue',blue)
+cv.imshow('Green',green)
+cv.imshow('red',red)
+cv.waitKey(0)
